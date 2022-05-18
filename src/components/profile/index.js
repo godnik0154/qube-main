@@ -8,11 +8,19 @@ import {Link} from 'react-router-dom';
 
 
 function pickTextColorBasedOnBgColorSimple(bgColor, lightColor, darkColor) {
-    var color = (bgColor.charAt(0) === '#') ? bgColor.substring(1, 7) : bgColor;
+    var color = (bgColor.charAt(0) === '#') ? bgColor.substring(1, bgColor.length) : bgColor;
     var r = parseInt(color.substring(0, 2), 16);
     var g = parseInt(color.substring(2, 4), 16);
     var b = parseInt(color.substring(4, 6), 16);
-    return (((r * 0.299) + (g * 0.587) + (b * 0.114)) > 186) ? darkColor : lightColor;
+    var a = parseInt(color.substring(6, 8), 16) / 255;
+
+    let ans = ((r * 0.299) + (g * 0.587) + (b * 0.114));
+
+
+    if(isNaN(a))
+        return (ans > 186) ? darkColor : lightColor;
+    else
+        return ans > 125 || a < 0.5 ? darkColor : lightColor;
 }
 
 function addAlpha(color, opacity) {
@@ -73,7 +81,7 @@ function Profile(){
 
     React.useEffect(()=>{
         let doWork = async () => {
-            const res = await axios.get(`${API_URL}/profile/${name}`,);
+            const res = await axios.get(`${API_URL}/profile/${name}`);
             const data = res.data.data;
             setUser(data);
         }
@@ -83,18 +91,34 @@ function Profile(){
 
     React.useEffect(()=>{
         if(user){
-            let r = document.querySelector(':root');
-            let val = isOverflown(document.querySelector('.user-profile-body-part--1-profile-links-cont'));
-            if(!val){
-                document.querySelector('.user-profile-body-part--1-profile-links-head-slave').style.display = 'none';
-                document.querySelector('.user-profile-body-mask-right').style.display = 'none';
-                document.querySelector('.user-profile-body-part--1-profile-links-slave').style.display = 'none';
+            try{
+                let r = document.querySelector(':root');
+                let val = isOverflown(document.querySelector('.user-profile-body-part--1-profile-links-cont'));
+
+                if(user.intro.length<=50){
+                    document.querySelector('.user-profile-body-part--1-profile-intro').style.fontSize = '2rem';
+                    document.querySelector('.user-profile-body-part--1-profile-intro').style.fontWeight = 'bold';
+                } else {
+                    document.querySelector('.user-profile-body-part--1-profile-intro').style.fontSize = '1rem';
+                }
+
+                if(!val){
+                    document.querySelector('.user-profile-body-part--1-profile-links-head-slave').style.display = 'none';
+                    document.querySelector('.user-profile-body-part--1-profile-links-cont').style.overflow = 'hidden';
+                }
+                r.style.setProperty('--primary-fore', pickTextColorBasedOnBgColorSimple(user.brandColor.primary,'#FFFFFF', '#000000'));
+                r.style.setProperty('--secondary-fore', pickTextColorBasedOnBgColorSimple(user.brandColor.secondary,'#FFFFFF', '#000000'));
+                r.style.setProperty('--primary-back', user.brandColor.primary);
+                r.style.setProperty('--secondary-back', user.brandColor.secondary);
+
+                let colo = pickTextColorBasedOnBgColorSimple(user.brandColor.secondary,'#ffffff', user.brandColor.primary);
+                let opq = addAlpha(colo,0.3);
+
+                r.style.setProperty('--primary-opaque-back',opq)
+                r.style.setProperty('--primary-opaque-fore',colo==="#ffffff"?colo:"#000000")
+            } catch(err){
+                console.log(err.message)
             }
-            r.style.setProperty('--primary-fore', pickTextColorBasedOnBgColorSimple(user.brandColor.primary,'#FFFFFF', '#000000'));
-            r.style.setProperty('--secondary-fore', pickTextColorBasedOnBgColorSimple(user.brandColor.secondary,'#FFFFFF', '#000000'));
-            r.style.setProperty('--primary-back', user.brandColor.primary);
-            r.style.setProperty('--secondary-back', user.brandColor.secondary);
-            r.style.setProperty('--primary-opaque',addAlpha(user.brandColor.primary,0.3))
         }
     },[user])
 
@@ -153,10 +177,6 @@ function Profile(){
                                                 )
                                             })
                                         }
-                                        <div className="user-profile-body-mask-right"></div>
-                                    </div>
-                                    <div className='user-profile-body-part--1-profile-links-slave'>
-                                        <i className="fa-solid fa-chevron-right"></i>
                                     </div>
                                 </div>
                             </div>

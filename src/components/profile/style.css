@@ -19,19 +19,25 @@
 }
 
 .user-profile-nav-image-cont{
-    margin: 0 2rem;
+    margin-left: 4.2rem;
 }
 
 .user-profile-nav-image{
-    height: 2rem;
+    height: 3rem;
     border-radius: 4px;
     margin: .8rem;
+    margin-left: 0;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -o-border-radius: 4px;
 }
 
 .user-profile-nav-text-cont{
     color: var(--primary-fore);
     text-transform: capitalize;
-    font-weight: 500;
+    font-weight: 600;
+    font-size: 1.2rem;
 }
 
 
@@ -52,7 +58,7 @@
 }
 
 .user-profile-body-part--1-profile-image-cont,.user-profile-body-part--1-profile-image{
-    height: 5rem;
+    height: 6rem;
     border-radius: 15px;
 }
 
@@ -121,6 +127,7 @@
 .user-profile-body-part--1-profile-links-head-slave a{
     color: var(--secondary-fore);
     text-align: right;
+    margin-right: 20px;
     font-size: .6rem;
     text-decoration: none;
     cursor:  pointer;
@@ -130,8 +137,41 @@
     overflow: hidden;
     width: auto;
     flex: .95;
+    overflow-x: scroll;
     white-space: nowrap;
 }
+
+.user-profile-body-part--1-profile-links--master ::-webkit-scrollbar {
+    height: 10px;
+}
+
+.user-profile-body-part--1-profile-links--master ::-webkit-scrollbar-track {
+    background: none;
+}
+
+.user-profile-body-part--1-profile-links--master:hover ::-webkit-scrollbar-thumb {
+    background: var(--primary-opaque-back);
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+}
+
+.user-profile-body-part--1-profile-links--master:hover .user-profile-body-part--1-profile-links-cont{
+    scrollbar-color: var(--primary-opaque-back) transparent;
+    scrollbar-width: thin;
+}
+
+.user-profile-body-part--1-profile-links-cont{
+    scrollbar-color: transparent transparent;
+    scrollbar-width: thin;
+}
+
+.user-profile-body-part--1-profile-links--master ::-webkit-scrollbar-thumb {
+    background: none;
+}
+
 
 .user-profile-body-part--1-profile-links-slave{
     flex: .05;
@@ -162,8 +202,8 @@
 }
 
 .user-part--1-profile-icons{
-    background-color: var(--primary-opaque);
-    color: var(--primary-fore);
+    background-color: var(--primary-opaque-back);
+    color: var(--primary-opaque-fore);
     cursor: pointer;
     display: flex;
     width: fit-content;
@@ -237,7 +277,8 @@
 
 .user-profile-footer-name{
     font-size: 1rem;
-    font-weight: 500;    
+    font-weight: 500;
+    text-transform: capitalize;
 }
 
 /* ----------------------- */
@@ -351,6 +392,10 @@
 
 
 @media (max-width:  400px){
+
+    .user-profile-nav-image-cont{
+        margin-left: 2.3rem;
+    }
 
     .user-profile-link-cont-box{
         width: 100%;
