@@ -57,6 +57,10 @@
     width: 50%;
 }
 
+.user-profile-body-part--1-profile-image{
+    box-shadow: 0 .125rem .25rem rgba(0,0,0,.075);
+}
+
 .user-profile-body-part--1-profile-image-cont,.user-profile-body-part--1-profile-image{
     height: 6rem;
     border-radius: 15px;
@@ -70,7 +74,7 @@
 .sp-img{
     height: 2rem;
     width: 1rem;
-    margin-right: 20px;
+    margin-right: 8px;
     margin-left: -2px;
 }
 
@@ -92,6 +96,7 @@
 .user-profile-body-part--1-cover-image{
     flex: 1;
     max-height: max-content;
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.15);
     max-width: 67%;
     border-radius: 10px;
 }
@@ -113,6 +118,7 @@
 .user-part--1-profile-icons-parent{
     display: inline-block;
     margin: 10px;
+    text-transform: capitalize;
     margin-left: 0;
 }
 
@@ -211,6 +217,11 @@
     justify-content: center;
     border-radius: 4px;
     padding: 4px 0;
+    transition: all .5s;
+}
+
+.user-part--1-profile-icons:hover{
+    transform: translateY(-5px);
 }
 
 .user-part--1-profile-icons i{
@@ -227,13 +238,23 @@
     margin-top: 20px;
 }
 
+.user-profile-body-part--1-profile-cta i{
+    margin-right: 10px;
+}
+
 .user-profile-body-part--1-profile-cta{
     background-color: var(--primary-back);
     color: var(--primary-fore);
     outline: none;
+    box-shadow: none;
+    transition: all .5s;
     border: 0;
     padding: 12px 38px;    
     border-radius: 5px;
+}
+
+.user-profile-body-part--1-profile-cta:hover{
+   box-shadow: 0 0.5rem 1rem rgb(0 0 0 / 15%)
 }
 
 .user-profile-footer{
@@ -246,6 +267,11 @@
     display: inline-block;
     margin-right: 10px;
     margin-bottom: 10px;
+    transition: all .5s;
+}
+
+.user-profile-footer-links:hover{
+    transform: scale(1.2);
 }
 
 .user-profile-footer-links i{
@@ -273,6 +299,7 @@
 
 .user-profile-footer-links-cont i{
     cursor: pointer;
+    font-weight: 100;
 }
 
 .user-profile-footer-name{
@@ -318,6 +345,7 @@
 
 .user-profile-link-cont-box{
     margin-bottom: 1rem;
+    align-items: center;
     border-radius: 10px;
     padding: 0.7rem 2rem;
     width: 20rem;
@@ -325,6 +353,11 @@
     background-color: var(--primary-opaque);
     color: var(--primary-fore);
     display:  flex;
+    transition: all .5s;
+}
+
+.user-profile-link-cont-box:hover{
+    margin-left: 20px;
 }
 
 .user-profile-link-cont-box-text{
@@ -336,6 +369,10 @@
     flex-grow: .1;
     border-radius: 4px;
     color:  var(--primary-fore);
+}
+
+.user-profile-link-cont-box i{
+    width: 20px;
 }
 
 .user-container{
@@ -373,13 +410,14 @@
     }
 
     .user-profile-body-part--1-profile-brand{
-        margin-top: 50px;
+        margin-top: 80px;
     }
 
     .user-profile-body-part--1-profile-image-cont{
         top: -14%;
         z-index: 20;
         left: 4%;
+        margin-bottom: 1rem;
         position: absolute;
     }
 

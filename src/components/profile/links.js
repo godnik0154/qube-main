@@ -2,8 +2,8 @@ import React from "react";
 import './style.css';
 import { API_URL } from '../../config';
 import axios from 'axios';
-import {useSelector} from 'react-redux';
 import {useParams} from "react-router-dom";
+import {Link} from 'react-router-dom';
 
 
 function pickTextColorBasedOnBgColorSimple(bgColor, lightColor, darkColor) {
@@ -38,11 +38,11 @@ let getIcon = (link) => {
     let one = 0, two = 0;
 
     for(let i=0;i<link.length;i++){
-        if(link[i]=='.')
+        if(link[i]==='.')
         {
-            if(one==0)
+            if(one===0)
                 one=i+1;
-            else if(two==0)
+            else if(two===0)
                 two = i;
             else
                 break;
@@ -51,7 +51,7 @@ let getIcon = (link) => {
 
     let name = link.substring(one,two);
 
-    if(Object.keys(socialIcons).indexOf(name)==-1)
+    if(Object.keys(socialIcons).indexOf(name)===-1)
         name = 'website';
     return {
         name,
@@ -73,6 +73,7 @@ function Model(){
         }
 
         doWork();
+    //eslint disable react-hooks/exhaustive-deps
     },[])
 
     React.useEffect(()=>{
@@ -97,7 +98,9 @@ function Model(){
                 <>
 	                <div className='user-profile-nav'>
 	                    <div className="user-profile-nav-image-cont">
-	                        <img src={`${API_URL}/profile/getImage/${user.profile.name}`} className='user-profile-nav-image' />
+                            <Link to={`/${name}`}>
+                                <img src={`${API_URL}/profile/getImage/${user.profile.name}`} className='user-profile-nav-image' alt='User'/>
+                            </Link>
 	                    </div>
 	                    <div className="user-profile-nav-text-cont">
 	                        {user.brand}
@@ -107,7 +110,7 @@ function Model(){
 	                	<div className="user-container">
 	                		<div className='user-profile-images'>
 	                            <div className="user-profile-image-link-cont">
-			                        <img src={`${API_URL}/profile/getImage/${user.profile.name}`} className='user-profile-image-link-cont-img' />
+			                        <img src={`${API_URL}/profile/getImage/${user.profile.name}`} className='user-profile-image-link-cont-img' alt='User'/>
 	                            </div>
 	                            <div className="user-profile-body-part--1-profile-brand">
 	                                {user.brand}
@@ -132,7 +135,7 @@ function Model(){
 		                		}
 
 	                			<div className='user-profile-link-cont-box'>
-                					<img className='user-profile-link-cont-box-icon sp-img' src={`${API_URL}/profile/getImage/${user.profile.name}`} />
+                					<img className='user-profile-link-cont-box-icon sp-img' src={`${API_URL}/profile/getImage/${user.profile.name}`} alt='User'/>
                 					<div className='user-profile-link-cont-box-text'>
                 						Store
                 					</div>

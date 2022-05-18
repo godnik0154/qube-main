@@ -2,7 +2,6 @@ import React from "react";
 import './style.css';
 import { API_URL } from '../../config';
 import axios from 'axios';
-import {useSelector} from 'react-redux';
 import {useParams} from "react-router-dom";
 import {Link} from 'react-router-dom';
 
@@ -135,7 +134,9 @@ function Profile(){
                 <>
                 <div className='user-profile-nav'>
                     <div className="user-profile-nav-image-cont">
-                        <img src={`${API_URL}/profile/getImage/${user.profile.name}`} className='user-profile-nav-image' alt='User'/>
+                        <Link to={`/${name}`}>
+                            <img src={`${API_URL}/profile/getImage/${user.profile.name}`} className='user-profile-nav-image' alt="User"/>
+                        </Link>
                     </div>
                     <div className="user-profile-nav-text-cont">
                         {user.brand}
@@ -182,6 +183,7 @@ function Profile(){
                             </div>
                             <div className="user-profile-body-part--1-profile-cta-cont">
                                 <button className="user-profile-body-part--1-profile-cta">
+                                    <i className="fa-light fa-cart-shopping"></i>
                                     Shop Now
                                 </button>
                             </div>
@@ -198,7 +200,7 @@ function Profile(){
                     <div className="user-profile-footer-links-cont">
                         {
                             user.socialData.map((item,index)=>{
-                                const {name,icon} = getIcon(item);
+                                const {icon} = getIcon(item);
                                 return (
                                     <div key={index} className="user-profile-footer-links" onClick={(e)=>redirectToWebpage(item)} title={item}>
                                         <i className={icon}></i>
