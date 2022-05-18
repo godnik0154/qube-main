@@ -143,7 +143,7 @@ function Model(){
 	                <div className='user-links-profile-footer'>
 	                    <div className="user-profile-footer-sub">
 	                        <div className="user-profile-footer-subnes">
-	                            Powered by Qube
+	                            powered by Qube
 	                        </div>
 	                    </div>
 	                </div>
