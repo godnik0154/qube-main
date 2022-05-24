@@ -83,7 +83,12 @@ function Model(){
             r.style.setProperty('--secondary-fore', pickTextColorBasedOnBgColorSimple(user.brandColor.secondary,'#FFFFFF', '#000000'));
             r.style.setProperty('--primary-back', user.brandColor.primary);
             r.style.setProperty('--secondary-back', user.brandColor.secondary);
-            r.style.setProperty('--primary-opaque',addAlpha(user.brandColor.primary,0.3))
+
+            let colo = pickTextColorBasedOnBgColorSimple(user.brandColor.secondary,'#ffffff', user.brandColor.primary);
+            let opq = addAlpha(colo,0.3);
+
+            r.style.setProperty('--primary-opaque-back',opq)
+            r.style.setProperty('--primary-opaque-fore',colo==="#ffffff"?colo:"#000000")
         }
     },[user])
 

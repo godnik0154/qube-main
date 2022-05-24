@@ -220,10 +220,6 @@
     transition: all .5s;
 }
 
-.user-part--1-profile-icons:hover{
-    transform: translateY(-5px);
-}
-
 .user-part--1-profile-icons i{
     margin-left: 10px;
 }
@@ -268,10 +264,10 @@
     margin-right: 10px;
     margin-bottom: 10px;
     transition: all .5s;
-}
-
-.user-profile-footer-links:hover{
-    transform: scale(1.2);
+    -webkit-transition: all .5s;
+    -moz-transition: all .5s;
+    -ms-transition: all .5s;
+    -o-transition: all .5s;
 }
 
 .user-profile-footer-links i{
@@ -291,6 +287,10 @@
     color: white;
     padding: 0 5px;
     margin-bottom: 1rem;
+    -webkit-border-radius:  5px;
+    -moz-border-radius:  5px;
+    -ms-border-radius:  5px;
+    -o-border-radius:  5px;
 }
 
 .user-profile-footer-links-cont{
@@ -304,7 +304,7 @@
 
 .user-profile-footer-name{
     font-size: 1rem;
-    font-weight: 500;
+    font-weight: 700;
     text-transform: capitalize;
 }
 
@@ -350,14 +350,18 @@
     padding: 0.7rem 2rem;
     width: 20rem;
     cursor: pointer;
-    background-color: var(--primary-opaque);
-    color: var(--primary-fore);
+    background-color: var(--primary-opaque-back);
+    color: var(--primary-opaque-fore);
     display:  flex;
     transition: all .5s;
-}
-
-.user-profile-link-cont-box:hover{
-    margin-left: 20px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+    -webkit-transition: all .5s;
+    -moz-transition: all .5s;
+    -ms-transition: all .5s;
+    -o-transition: all .5s;
 }
 
 .user-profile-link-cont-box-text{
@@ -368,7 +372,11 @@
     font-size: 1.3rem;
     flex-grow: .1;
     border-radius: 4px;
-    color:  var(--primary-fore);
+    color: var(--primary-opaque-fore);
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -o-border-radius: 4px;
 }
 
 .user-profile-link-cont-box i{
@@ -428,8 +436,31 @@
     }
 }
 
+@media not all and (hover: none)
+{
+    .user-profile-link-cont-box:hover{
+        margin-left: 20px;
+    }
+
+    .user-part--1-profile-icons:hover{
+        transform: translateY(-5px);
+    }
+
+    .user-profile-footer-links:hover{
+        transform: scale(1.2);
+        -webkit-transform: scale(1.2);
+        -moz-transform: scale(1.2);
+        -ms-transform: scale(1.2);
+        -o-transform: scale(1.2);
+    }
+}
+
 
 @media (max-width:  400px){
+
+    .user-profile-footer{
+        padding: 1rem 2rem;
+    }
 
     .user-profile-nav-image-cont{
         margin-left: 2.3rem;
