@@ -68,9 +68,10 @@ let getIcon = (link) => {
 }
 
 function isOverflown(element) {
+    if(element===null) return;
     return element.scrollHeight > element.clientHeight || element.scrollWidth > element.clientWidth;
 }
-  
+
 
 function Profile(){
 
@@ -101,7 +102,7 @@ function Profile(){
                     document.querySelector('.user-profile-body-part--1-profile-intro').style.fontSize = '1rem';
                 }
 
-                if(!val){
+                if(!val && document.querySelector('.user-profile-body-part--1-profile-links-cont')){
                     document.querySelector('.user-profile-body-part--1-profile-links-head-slave').style.display = 'none';
                     document.querySelector('.user-profile-body-part--1-profile-links-cont').style.overflow = 'hidden';
                 }
@@ -126,7 +127,6 @@ function Profile(){
         window.open(link, '_blank');
     }
 
-    console.log(user);
 
     return (
         <div className="user-profile">
@@ -154,7 +154,7 @@ function Profile(){
                             <div className="user-profile-body-part--1-profile-intro">
                                 {user.intro}
                             </div>
-                            <div className="user-profile-body-part--1-profile-links">
+                            {user.socialData.length!==0?<div className="user-profile-body-part--1-profile-links">
                                 <div className="user-profile-body-part--1-profile-links-head-master">
                                     <p className="user-profile-body-part--1-profile-links-head">Links</p>
                                     <div className="user-profile-body-part--1-profile-links-head-slave">
@@ -180,7 +180,7 @@ function Profile(){
                                         }
                                     </div>
                                 </div>
-                            </div>
+                            </div>:null}
                             <div className="user-profile-body-part--1-profile-cta-cont">
                                 <button className="user-profile-body-part--1-profile-cta">
                                     <i className="fa-light fa-cart-shopping"></i>
@@ -188,11 +188,11 @@ function Profile(){
                                 </button>
                             </div>
                         </div>
-                        <div className="user-profile-body-part--1-cover">
+                        {user.cover.name!==""?<div className="user-profile-body-part--1-cover">
                             <div className="user-profile-body-part--1-cover-image-cont">
                                 <img src={`${API_URL}/profile/getImage/${user.cover.name}`} className='user-profile-body-part--1-cover-image' alt='User Cpver'/>
                             </div>
-                        </div>
+                        </div>:<div style={{marginTop:"3rem"}}/>}
                     </div>
                 </div>
                 <div className='user-profile-footer'>
